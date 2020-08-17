@@ -1,18 +1,16 @@
-<h1>Sign Up</h1>
+<h1>Login Here</h1>
+
+<%= flash[:message] if flash[:message]%>
 
 
-<%= form_for(@user) do |f| %>
+<%= form_for :user do |f| %>
     <%= f.label :user_name %>
     <%= f.text_field :user_name %>
-    <br>
-    <br>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
     <br>
     <br>
     <%= f.label :password %>
     <%= f.password_field :password %>
     <br>
     <br>
-    <%= f.submit "Submit" %>
+    <%= f.submit "Login" %>
 <% end %>
