@@ -57,3 +57,11 @@ gem 'bootstrap'
 gem 'jquery-rails'
 
 gem "dotenv-rails", "~> 2.7"
+
+gem "uri", "~> 0.10.0"
+
+gem "http", "~> 4.4"
+
+gem "net", "~> 0.3.3"
+
+gem "openssl", "~> 2.2"
