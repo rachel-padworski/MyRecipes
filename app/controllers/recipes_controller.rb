@@ -6,7 +6,7 @@ class RecipesController < ApplicationController
     before_action :redirect_if_not_logged_in
 
     def index
-   
+        @restaurants = Restaurant.all
     end
 
     def new
@@ -23,16 +23,17 @@ class RecipesController < ApplicationController
     end
 
     def search
+        search["recipes"].each do |recipe|
+            Recipe.create_recipes(recipe)
+        end
+
         recipes = find_recipe(params[:recipe])
-       
         if recipes
             render :index
         else
             flash[:alert] = 'Recipe not found'
             render :search
         end
-
-        @recipe = recipes.first 
     end
 
 
@@ -43,9 +44,6 @@ class RecipesController < ApplicationController
     end
 
     def find_recipe(name)
-        # request_api("https://mycookbook-io1.p.rapidapi.com/recipes/rapidapi#{URI.encode(name)}")
-     
-
         url = URI("https://api.edamam.com/search?q=#{name}&app_id=#{ENV['APP_ID']}&app_key=#{ENV['API_KEY']}")
 
         https = Net::HTTP.new(url.host, url.port);
@@ -54,9 +52,17 @@ class RecipesController < ApplicationController
         request = Net::HTTP::Get.new(url)
 
         response = https.request(request)
-        res=JSON.parse(response.read_body)
-        # puts response.read_body
-        name = res["hits"][1]["recipe"]["label"]
+        res=JSON.parse(response.read_body)  
     end
 
+   
 end
+
+    #url to the recipe instructions:
+    # recipes["hits"][0]["recipe"]["url"]
+
+    #to the recipe title:
+    # recipes["hits"][0]["recipe"]["label"]
+
+    #to the recipe image:
+    # recipes["hits"][1]["recipe"]["image"]
