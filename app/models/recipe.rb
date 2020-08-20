@@ -4,10 +4,10 @@ class Recipe < ApplicationRecord
   has_many :users_commented, through: :comments, source: :user
 
   def self.create_recipes(recipes)
-    create(
-      title: recipes["hits"][]["recipe"]["label"]
-      description: recipes["hits"][]["recipe"]["url"]
-      image: recipes["hits"][]["recipe"]["image"]
+    recipe = self.create(
+      title: recipes["hits"]["recipe"]["label"],
+      description: recipes["hits"]["recipe"]["url"],
+      image: recipes["hits"]["recipe"]["image"]
     )
   end
 

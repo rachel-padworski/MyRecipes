@@ -1,0 +1,10 @@
+<div><%= @recipe.image %></div>
+<h1><%= @recipe.title %></h1>
+<br>
+
+<p><%= link_to "See all comments", recipe_comments_path(@recipe) %></p>
+
+<h4>Comments: </h4>
+<% @recipe.comments.each do |comment| %>
+    <li><strong><%= comment.user.user_name %></strong> says "<%= link_to comment.content, comment_path(comment) %>"</li>
+<% end %>

@@ -2,16 +2,11 @@ class CommentsController < ApplicationController
     before_action :redirect_if_not_logged_in
 
     def index
-        if params[:recipe_id]
-            @recipe = Recipe.find_by_id(params[:recipe_id])
-            if @recipe
-                @comments = @recipe.comments
-            else
-                flash[:message] = "Post doesn't exist"
-                @comments = Comment.all
-            end
+        if params[:recipe_id] && @recipe = Recipe.find_by_id(params[:recipe_id])
+            @comments = @recipe.comments
         else
-            @comments = Comment.all 
+            @error = "Recipe doesn't exist" if params[:recipe_id]
+            @comments = Comment.all
         end
     end
 

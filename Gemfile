@@ -65,3 +65,6 @@ gem "http", "~> 4.4"
 gem "net", "~> 0.3.3"
 
 gem "openssl", "~> 2.2"
+
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
