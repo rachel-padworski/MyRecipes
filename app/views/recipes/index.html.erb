@@ -1,5 +1,6 @@
 <h1>Recipes</h1>
 
+<!--
 <div>
 <% if flash[:alert] %>
     <div><%= flash[:alert] %></div>
@@ -12,5 +13,18 @@
   <% end %>
   </div>
 </div>
+-->
 
+<%= form_tag("/recipes", method: 'get') do %>
+  <%= label_tag(:q, "Search for: ") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
 
+<div>
+<ul>
+  <% @recipes.each do |recipe| %>
+    <li><%= link_to recipe.title, recipe_path(recipe) %></li>
+  <% end %>
+</ul> 
+</div> 

@@ -6,7 +6,14 @@ class RecipesController < ApplicationController
     before_action :redirect_if_not_logged_in
 
     def index
-        @recipes = Recipe.all
+        if params[:user_id] && @user = User.find_by_id(params[:user_id])
+            @recipes = @user.recipes.alpha
+        else
+           @error = "That user doesn't exist" if params[:user_id]
+           @recipes = Recipe.alpha.includes(:user)
+        end
+     
+        #@recipes = @recipes.search(params[:q].downcase) if params[:q] && !params[:q].empty?
     end
 
     def new
@@ -22,22 +29,27 @@ class RecipesController < ApplicationController
         end
     end
 
-    def search
-
-        @recipes = find_recipe(recipe_params)
-        # if recipes
-        #     render :index
-        # else
-        #     flash[:alert] = 'Recipe not found'
-        #     render :search
-        # end
+    def show
+        @recipe = Recipe.find_by_id(params[:id])
+        
     end
+
+    # def search
+
+    #     @recipes = find_recipe(recipe_params)
+    #     # if recipes
+    #     #     render :index
+    #     # else
+    #     #     flash[:alert] = 'Recipe not found'
+    #     #     render :search
+    #     # end
+    # end
 
 
     private
 
     def recipe_params 
-        params.require(:recipe).permit(:title, :description, :image)
+        params.require(:recipe).permit(:title, :description)
     end
 
     def find_recipe(name)
@@ -52,9 +64,9 @@ class RecipesController < ApplicationController
         res=JSON.parse(response.read_body)  
     end
 
-    search["recipes"].each do |recipe|
-        Recipe.create_recipes(recipe)
-    end
+    # search["recipes"].each do |recipe|
+    #     Recipe.create_recipes(recipe)
+    # end
    
 end
 
