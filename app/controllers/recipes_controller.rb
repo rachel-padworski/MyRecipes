@@ -34,16 +34,6 @@ class RecipesController < ApplicationController
         
     end
 
-    # def search
-
-    #     @recipes = find_recipe(recipe_params)
-    #     # if recipes
-    #     #     render :index
-    #     # else
-    #     #     flash[:alert] = 'Recipe not found'
-    #     #     render :search
-    #     # end
-    # end
 
 
     private

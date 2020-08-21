@@ -3,7 +3,7 @@
 <h2><%= @recipe.description %></h2>
 <br>
 
-<p><%= link_to "See all comments", recipe_comments_path(@recipe) %></p>
+<p><%= link_to "Add a comment", new_recipe_comment_path(@recipe) %></p>
 
 <h4>Comments: </h4>
 <% @recipe.comments.each do |comment| %>

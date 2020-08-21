@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
 
     def new
         @comment = Comment.new
+        @recipe = Recipe.find_by_id(params[:recipe_id])
     end
 
     def create
@@ -40,5 +41,10 @@ class CommentsController < ApplicationController
         end
     end
 
+    private
+
+    def comment_params
+        params.require(:comment).permit(:content)
+    end
 
 end

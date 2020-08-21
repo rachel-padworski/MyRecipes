@@ -1,9 +1,9 @@
-<h1>Leave a Comment</h1>
+<h1>Leave a comment for this recipe</h1>
 
 <%= form_for(@comment) do |f| %>
     
-    <%= f.label :text %>
-    <%= f.text_field :text %>
+    <%= f.label :content, "Comment" %>
+    <%= f.text_field :content, placeholder: "Tell us why you love it!" %>
     <br>
     <br>
     <%= f.submit "Submit" %>
