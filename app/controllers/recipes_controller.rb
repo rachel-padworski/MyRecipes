@@ -9,11 +9,9 @@ class RecipesController < ApplicationController
         if params[:user_id] && @user = User.find_by_id(params[:user_id])
             @recipes = @user.recipes.alpha
         else
-           @error = "That user doesn't exist" if params[:user_id]
-           @recipes = Recipe.alpha.includes(:user)
+            @error = "That user doesn't exist" if params[:user_id]
+            @recipes = Recipe.alpha.includes(:user)
         end
-     
-        #@recipes = @recipes.search(params[:q].downcase) if params[:q] && !params[:q].empty?
     end
 
     def new
@@ -31,7 +29,6 @@ class RecipesController < ApplicationController
 
     def show
         @recipe = Recipe.find_by_id(params[:id])
-        
     end
 
 
@@ -53,18 +50,7 @@ class RecipesController < ApplicationController
         response = https.request(request)
         res=JSON.parse(response.read_body)  
     end
-
-    # search["recipes"].each do |recipe|
-    #     Recipe.create_recipes(recipe)
-    # end
    
 end
 
-    #url to the recipe instructions:
-    # recipes["hits"][0]["recipe"]["url"]
-
-    #to the recipe title:
-    # recipes["hits"][0]["recipe"]["label"]
-
-    #to the recipe image:
-    # recipes["hits"][1]["recipe"]["image"]
+ 

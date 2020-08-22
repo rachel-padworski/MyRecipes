@@ -1,20 +1,5 @@
 <h1>Recipes</h1>
 
-<!--
-<div>
-<% if flash[:alert] %>
-    <div><%= flash[:alert] %></div>
-  <% end %>
-  <div>
-  <%= form_with(url: search_path, method: 'get', local: true) do %>
-    <%= label_tag :recipe, 'Search for a recipe: ' %>
-    <%= text_field_tag :recipe, nil, placeholder: 'Eg. Chicken' %>
-    <%= button_tag 'Search' %>
-  <% end %>
-  </div>
-</div>
--->
-
 <%= form_tag("/recipes", method: 'get') do %>
   <%= label_tag(:q, "Search for: ") %>
   <%= text_field_tag(:q) %>

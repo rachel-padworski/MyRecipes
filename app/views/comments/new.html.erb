@@ -1,6 +1,7 @@
-<h1>Leave a comment for this recipe</h1>
+<h1>Leave a comment for <%= @recipe.title %> recipe</h1>
 
 <%= form_for(@comment) do |f| %>
+    <%= f.hidden_field :recipe_id, :value => @recipe.id %>
     
     <%= f.label :content, "Comment" %>
     <%= f.text_field :content, placeholder: "Tell us why you love it!" %>
