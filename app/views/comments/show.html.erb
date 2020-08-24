@@ -3,6 +3,10 @@
 <br>
 <h4>"<%= @comment.content %>"  by <%= @comment.user.user_name %></h4>
 <br>
-<%= link_to 'Edit Comment', edit_recipe_comment_path %>
+
+
+<% if @comment.user == current_user %>
+  <%= link_to "Edit Comment", edit_comment_path(@comment)%>
+<% end %>
 
 

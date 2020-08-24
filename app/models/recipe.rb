@@ -3,6 +3,8 @@ class Recipe < ApplicationRecord
   has_many :comments
   has_many :users_commented, through: :comments, source: :user
 
+  validates :content, :title, presence: true
+
   scope :alpha, -> { order(:title) }
 
   def self.create_recipes(recipes)
@@ -18,9 +20,3 @@ end
 
    
 
-
-# get search query from the user
-# find recipes that match
-# send them to the user
-
-# (...if i have time) user can save a recipe to their "cookbook"

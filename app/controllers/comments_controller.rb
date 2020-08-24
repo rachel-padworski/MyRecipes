@@ -1,10 +1,13 @@
 class CommentsController < ApplicationController
     before_action :redirect_if_not_logged_in
+    before_action 
 
 
     def index
         if params[:recipe_id] && @recipe = Recipe.find_by_id(params[:recipe_id])
             @comments = @recipe.comments
+        elsif current_user
+            @comments = current_user.comments.all
         else
             @error = "Recipe doesn't exist" if params[:recipe_id]
             @comments = Comment.all
@@ -34,17 +37,29 @@ class CommentsController < ApplicationController
 
     def show
         @comment = Comment.find(params[:id])
-        @recipe = Recipe.find(params[:id])
     end
 
     def edit
+        @comment = Comment.find(params[:id])
     end
 
     def update
-        @comment = Comment.find_by_id(params[:id])
+        @comment = current_user.comments.find(params[:id])
+     
         if @comment.update(comment_params)
             redirect_to comment_path(@comment)
         else
+            render :edit
+        end
+    end
+
+    def destroy
+        @comment = current_user.comments.find(params[:id])
+        if @comment.destroy
+            flash[:success] = "Your comment was successfully deleted."
+            redirect_to comment_path(@comment)
+        else
+            @error = "Comment could not be deleted."
             render :edit
         end
     end
