@@ -1,0 +1,16 @@
+<% content_for :content do %>
+ <div class="jumbotron text-center">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <p>
+                    <%= yield %>
+                </p>
+            </div>
+           
+        </div>
+    </div>
+<% end %>
+
+<%= render template: "layouts/application" %>

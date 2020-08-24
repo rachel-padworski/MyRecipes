@@ -15,11 +15,6 @@ class SessionsController < ApplicationController
         end
     end
 
-    def destroy
-        session.clear
-        redirect_to root_path
-    end
-
     def google
         @user = User.find_or_create_by(email: auth["info"]["email"]) do |user|
             user.user_name = auth["info"]["first_name"]
@@ -33,6 +28,10 @@ class SessionsController < ApplicationController
         end
     end
 
+    def destroy
+        session.delete :user_id
+        redirect_to root_path
+    end
     
 
     private

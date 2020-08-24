@@ -34,6 +34,7 @@ class CommentsController < ApplicationController
 
     def show
         @comment = Comment.find(params[:id])
+        @recipe = Recipe.find(params[:id])
     end
 
     def edit

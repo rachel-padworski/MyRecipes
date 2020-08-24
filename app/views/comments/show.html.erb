@@ -1,2 +1,8 @@
-<h2><%= @comment.content %> by <%= @comment.user.user_name %></h2>
+<br>
+<h2>Your comment</h2>
+<br>
+<h4>"<%= @comment.content %>"  by <%= @comment.user.user_name %></h4>
+<br>
+<%= link_to 'Edit Comment', edit_recipe_comment_path %>
+
 
