@@ -3,6 +3,13 @@
 # MyRecipes
 MyRecipes webapp provides a place for user to create and view recipes. Users can signup, login, comment, create recipes, and view recipes.
 
+# Installation
+To use this app, clone the repo, then execute:
+$ bundle
+
+# Usage
+
+
 Things you may want to cover:
 
 * Ruby version
