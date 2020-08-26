@@ -3,7 +3,7 @@ class Recipe < ApplicationRecord
   has_many :comments
   has_many :users_commented, through: :comments, source: :user
 
-  validates :content, :title, presence: true
+  validates :description, :title, presence: true
 
   scope :alpha, -> { order(:title) }
 
