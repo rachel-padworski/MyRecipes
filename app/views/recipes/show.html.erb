@@ -1,14 +1,14 @@
 
 <h1><%= @recipe.title %></h1>
-<h2><%= @recipe.description %></h2>
-<br>
+<h4><%= @recipe.description %></h4>
+<br><br>
 
-<p><%= link_to "Add a comment", new_recipe_comment_path(@recipe) %></p>
-
-<h4>Comments: </h4>
+<%= button_to "Add a comment", new_recipe_comment_path(@recipe) %>
+<br><br>
+<h4><strong>Comments: </strong></h4>
 <% @recipe.comments.each do |comment| %>
     <ul>
-        <li><strong><%= comment.user.user_name %></strong> says "<%= link_to comment.content, recipe_comment_path(comment) %>"</li>
+        <li><strong><%= comment.user.user_name %></strong> says "<%= comment.content %>"</li>
     </ul>
 <% end %>
 
