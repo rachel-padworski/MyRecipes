@@ -39,17 +39,7 @@ class RecipesController < ApplicationController
         params.require(:recipe).permit(:title, :description)
     end
 
-    def find_recipe(name)
-        url = URI("https://api.edamam.com/search?q=#{name}&app_id=#{ENV['APP_ID']}&app_key=#{ENV['API_KEY']}")
-
-        https = Net::HTTP.new(url.host, url.port);
-        https.use_ssl = true
-
-        request = Net::HTTP::Get.new(url)
-
-        response = https.request(request)
-        res=JSON.parse(response.read_body)  
-    end
+    
    
 end
 

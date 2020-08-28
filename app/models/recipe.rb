@@ -7,13 +7,6 @@ class Recipe < ApplicationRecord
 
   scope :alpha, -> { order(:title) }
 
-  def self.create_recipes(recipes)
-    create(
-      title: recipes["hits"]["recipe"]["label"],
-      description: recipes["hits"]["recipe"]["url"],
-      image: recipes["hits"]["recipe"]["image"]
-    )
-  end
 
 
 end

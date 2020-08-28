@@ -1,8 +1,5 @@
 class SessionsController < ApplicationController
 
-    def index
-        @recipes = Recipe.all
-    end
 
     def create
         user = User.find_by(user_name: params[:user][:user_name])

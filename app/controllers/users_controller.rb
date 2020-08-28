@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
 
+    def index
+        @user = User.find(params[:id])
+
+    end
+# I need to get the 
+
     def new
         @user = User.new
     end

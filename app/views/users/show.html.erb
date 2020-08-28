@@ -1,7 +1,7 @@
 <h1>Welcome, <%= @user.user_name %>!</h1>
 <h4>Let's get cooking! Add a new recipe or view all recipes.</h4>
 <br>
-<%= button_to "Recipes", recipes_path %>
+<%= button_to "Recipes", recipes_path, method: 'get' %>
 <br>
 <%= button_to 'Add a Recipe', new_recipe_path %>
 <br>
