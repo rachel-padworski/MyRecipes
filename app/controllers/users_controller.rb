@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
 
     def index
-        @user = User.find(params[:id])
-
+        @user = User.find_by_id(params[:id])
+        
     end
-# I need to get the 
+
 
     def new
         @user = User.new

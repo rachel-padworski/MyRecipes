@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   resources :comments
   resources :users do
-    resources :recipes, only: [:new, :create, :index, :edit]
+    resources :recipes
   end
   resources :recipes do
     resources :comments

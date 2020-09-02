@@ -1,11 +1,18 @@
-<h1>Welcome!</h1>
+<% if logged_in? %>
+    <h1>Welcome!</h1>
+    <h4>Let's get cooking! Add a new recipe or view all recipes.</h4>
+    <br>
+    <%= button_to "Recipes", recipes_path, method: 'get' %>
+    <br>
+    <%= button_to 'Add a Recipe', new_recipe_path %>
+    <br>
+<% else %>
+    <br>
+    <%= button_to 'Login', login_path, method: 'get' %>
+    <br>
+    <%= button_to 'Signup', signup_path, method: 'get' %>
+    <br>
+<% end %>
 
-<%= link_to "Sign Up Here", signup_path %>
-<br>
-<br>
-<%= link_to "Log In Here", login_path %>
-<br>
-<br>
-<%= link_to "Log In With Google", '/auth/google_oauth2'%>
-<br>
-<br>
+
+<%= image_tag 'calum-lewis-vA1L1jRTM70-unsplash.jpg', class: 'welcome-img'%>
