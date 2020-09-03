@@ -5,7 +5,7 @@ class Recipe < ApplicationRecord
 
   validates :description, :title, presence: true
 
-  scope :alpha, -> { order(:title) }
+  scope :alpha, -> { order('LOWER(title)') }
 
 
 
