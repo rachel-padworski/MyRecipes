@@ -32,6 +32,7 @@ class CommentsController < ApplicationController
         if @comment.save
             redirect_to recipe_comment_path(@recipe, @comment)
         else
+            @error = @comment.errors.full_messages
             render :new
         end
     end
@@ -50,6 +51,7 @@ class CommentsController < ApplicationController
         if @comment.update(comment_params)
             redirect_to comment_path(@comment)
         else
+            @error = @comment.errors.full_messages
             render :edit
         end
     end
@@ -60,7 +62,7 @@ class CommentsController < ApplicationController
             flash[:success] = "Your comment was successfully deleted."
             redirect_to recipes_path
         else
-            @error = "Comment could not be deleted."
+            @error = @comment.errors.full_messages
             render :edit
         end
     end

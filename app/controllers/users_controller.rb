@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
 
     def index
-        @user = User.find_by_id(params[:id])
-        
+        @user = User.find_by_id(params[:id]) 
     end
 
 
@@ -17,6 +16,7 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id 
             redirect_to @user
         else
+            @error = @user.errors.full_messages.to_sentence
             render :new
         end
     end

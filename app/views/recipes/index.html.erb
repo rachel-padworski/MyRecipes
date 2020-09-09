@@ -1,3 +1,10 @@
+<div>
+  <h4>Search for a Recipe: </h4>
+  <%= form_tag(recipes_path, method: 'get') do %>
+    <%= text_field_tag(:q) %>
+    <%= submit_tag("search") %>
+  <% end %>
+</div>
 
 
 <div>
@@ -7,4 +14,8 @@
       <% end %>
     </ul> 
 </div> 
+
+
+
+
         

@@ -4,11 +4,10 @@ class RecipesController < ApplicationController
     before_action :redirect_if_not_logged_in
 
     def index
-        if params[:user_id] && @user = User.find_by_id(params[:user_id])
-            @recipes = @user.recipes.alpha
+        if params[:q]
+            @recipes = Recipe.search(params[:q])
         else
-            @error = "That user doesn't exist" if params[:user_id]
-            @recipes = Recipe.alpha.includes(:user)
+            @recipes = Recipe.alpha.all
         end
     end
 
@@ -39,6 +38,7 @@ class RecipesController < ApplicationController
         if @recipe.update(recipe_params)
             redirect_to recipe_path(@recipe)
         else
+            @error = @recipe.errors.full_messages
             render :edit
         end
     end
